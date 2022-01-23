@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [style.padding]="'10px'"> 
+    <h1 align="center">Astronomy Picture of the Day {{date.value.format('MMMM Do YYYY')}}</h1>    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date" [max]="maxDate" required (dateChange)="onDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>
+
+<mat-card fxLayout.xl="row" fxLayout.lg="column" fxLayoutGap="20px" class="aopd-card" *ngIf="!loading">
+    <img class="aopd-image" [lazyLoad]=aopd.url>
+    <mat-card-content>
+        <h1><b>{{aopd.title}}</b></h1>
+        <h2>Date: <b>{{aopd.date}}</b></h2>
+       
+        <h3><b>Description</b></h3>
+        <h3>{{aopd.explanation}}</h3>
+    </mat-card-content>
+</mat-card>

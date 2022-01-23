@@ -1,0 +1,18 @@
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [style.padding]="'10px'">
+    <h1 align="center">Rover Images for the Day {{date.value.format('MMMM Do YYYY')}}</h1>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date" [max]="maxDate" required
+            (dateChange)="onDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>
+
+<div *ngIf="!loading" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <ng-container *ngFor="let photo of roverResponse.photos">
+        <img fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" class="rover-image"
+            [lazyLoad]=photo.img_src>
+    </ng-container>
+</div>

@@ -1,0 +1,18 @@
+
+
+
+<div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center" [style.padding]="'10px'">
+    <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Search for</mat-label>
+        <input matInput type="text" [(ngModel)]="value" (input)="onSearchChange($event)">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-hint>(e.g. "Orion")</mat-hint>
+    </mat-form-field>
+</div>
+
+<div *ngIf="!loading && searched" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <ng-container *ngFor="let item of libraryResponse.collection.items">
+        <img fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" class="rover-image"
+            [lazyLoad]=item.links[0].href>
+    </ng-container>
+</div>
